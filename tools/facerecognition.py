@@ -76,10 +76,10 @@ detector = cv2.CascadeClassifier(args["cascade"])
 # initialize the video stream and allow the camera sensor to warm up
 printjson("status", "starting video stream...")
 
-if args["source"].isdigit():
-    src = int(args["source"])
-else:
+if isinstance(args["source"], int): #.isdigit():
     src = args["source"]
+else:
+    src = int(args["source"])
 
 if args["usePiCamera"] >= 1:
 	vs = VideoStream(usePiCamera=True, rotation=args["rotateCamera"]).start()
